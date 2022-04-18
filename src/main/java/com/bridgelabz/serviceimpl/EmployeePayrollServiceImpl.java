@@ -1,11 +1,13 @@
 package com.bridgelabz.serviceimpl;
 
+import com.bridgelabz.model.EmployeePayroll;
 import com.bridgelabz.repository.DbConnection;
 import com.bridgelabz.service.EmployeePayrollService;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
+
 /*********************************************************************
  * Purpose: Employee Payroll Service Implementation Class.
  *
@@ -18,7 +20,8 @@ public class EmployeePayrollServiceImpl implements EmployeePayrollService {
     public static Connection connection = DbConnection.getConnection();
     public static Statement statement = null;
 
-    /** Method :- Method for Creating table in Database
+    /**
+     * Method :- Method for Creating table in Database
      *
      * @return It will Create Table in DataBase.
      * @throws SQLException
@@ -26,7 +29,21 @@ public class EmployeePayrollServiceImpl implements EmployeePayrollService {
     public int createTable() throws SQLException {
         String sql = "CREATE TABLE EmployeePayroll( id int primary key, name varchar(50), salary varchar(50))";
         statement = connection.createStatement();
-        System.out.println("Created Table Successfully.");
         return statement.executeUpdate(sql);
+    }
+
+    /**
+     * Method :- Method for Insert data into table.
+     *
+     * @param employeePayroll passing EmployeePayroll Object as a input.
+     * @return inserting data in data base.
+     * @throws SQLException
+     */
+    @Override
+    public int insertValues(EmployeePayroll employeePayroll) throws SQLException {
+        String sqlQuery = "insert into EmployeePayroll values(" + employeePayroll.getId() + ",'" + employeePayroll.getName() + "','"
+                + employeePayroll.getSalary() + "')";
+        statement = connection.createStatement();
+        return statement.executeUpdate(sqlQuery);
     }
 }

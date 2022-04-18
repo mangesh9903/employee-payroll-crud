@@ -1,5 +1,7 @@
 package com.bridgelabz.service;
 
+import com.bridgelabz.model.EmployeePayroll;
+
 import java.sql.SQLException;
 
 /*********************************************************************
@@ -12,4 +14,5 @@ import java.sql.SQLException;
  **********************************************************************/
 public interface EmployeePayrollService {
     int createTable() throws SQLException;
+    int insertValues(EmployeePayroll employeePayroll) throws SQLException;
 }
