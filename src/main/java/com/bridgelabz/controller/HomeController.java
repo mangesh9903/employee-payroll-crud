@@ -24,8 +24,9 @@ public class HomeController {
         Scanner scanner = new Scanner(System.in);
         System.out.println("1. Create Table.");
         System.out.println("2. Insert Data in Employee Payroll.");
-        System.out.println("3. Show All Records.");
-        System.out.println("4. Exit From Employee Payroll.");
+        System.out.println("3. Show All Records Of Employee Payroll.");
+        System.out.println("4. Update Records Of Employee Payroll.");
+        System.out.println("5. Exit From Employee Payroll.");
 
         int ch = scanner.nextInt();
 
@@ -47,9 +48,28 @@ public class HomeController {
                 break;
             case 3:
                 System.out.println("--------------------  Employee Payroll Database Records ----------------------");
-                  payrollService.showRecords();
+                payrollService.showRecords();
                 System.out.println("===============================================================================");
+                break;
             case 4:
+                System.out.println("-----------  Employee Payroll Database Before Update Records ----------------");
+                payrollService.showRecords();
+                System.out.println("==============================================================================");
+                System.out.println("--------updating new values---------");
+
+                System.out.println("Enter id you want to update: ");
+                int id = scanner.nextInt();
+                System.out.println("Enter name to change: ");
+                employeePayroll.setName(scanner.next());
+                System.out.println("Enter salary to change: ");
+                employeePayroll.setSalary(scanner.nextDouble());
+                System.out.println("-------------  Employee Payroll Database After Update Records ----------------");
+                payrollService.updateValues(id, employeePayroll);
+                payrollService.showRecords();
+                System.out.println("===============================================================================");
+
+                break;
+            case 5:
                 System.exit(0);
             default:
                 System.out.println("Invalid Input!!!");

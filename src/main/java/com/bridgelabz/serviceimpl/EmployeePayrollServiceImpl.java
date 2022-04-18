@@ -49,7 +49,8 @@ public class EmployeePayrollServiceImpl implements EmployeePayrollService {
         return statement.executeUpdate(sqlQuery);
     }
 
-    /** Method :- Shows All Records Present In Table.
+    /**
+     * Method :- Shows All Records Present In Table.
      *
      * @throws SQLException
      */
@@ -60,9 +61,25 @@ public class EmployeePayrollServiceImpl implements EmployeePayrollService {
         ResultSet resultSet = statement.executeQuery(sqlQuery);
 
         while (resultSet.next()) {
-            System.out.println(" ID :- " + resultSet.getInt("id") + " Name : "
-                    + resultSet.getString("name") + " Salary : " + resultSet.getString("salary"));
+            System.out.println(" ID :- " + resultSet.getInt("id") + " Name :- "
+                    + resultSet.getString("name") + " Salary :- " + resultSet.getString("salary"));
         }
 
+    }
+
+    /**
+     * Method:- Method for Update Existing Values From DataBase.
+     *
+     * @param id              Passing Id Of Employee who want to update
+     * @param employeePayroll passing Employee Payroll Object as a input
+     * @return update values.
+     * @throws SQLException
+     */
+    @Override
+    public int updateValues(int id, EmployeePayroll employeePayroll) throws SQLException {
+        String sqlQuery = "UPDATE EmployeePayroll SET name='" + employeePayroll.getName() + "', salary='" + employeePayroll.getSalary()
+                + "' WHERE id=" + id + "";
+        statement = connection.createStatement();
+        return statement.executeUpdate(sqlQuery);
     }
 }
