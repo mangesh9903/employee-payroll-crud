@@ -24,7 +24,8 @@ public class HomeController {
         Scanner scanner = new Scanner(System.in);
         System.out.println("1. Create Table.");
         System.out.println("2. Insert Data in Employee Payroll.");
-        System.out.println("3. Exit From Employee Payroll.");
+        System.out.println("3. Show All Records.");
+        System.out.println("4. Exit From Employee Payroll.");
 
         int ch = scanner.nextInt();
 
@@ -45,6 +46,10 @@ public class HomeController {
                 System.out.println("Data Inserted Successfully.");
                 break;
             case 3:
+                System.out.println("--------------------  Employee Payroll Database Records ----------------------");
+                  payrollService.showRecords();
+                System.out.println("===============================================================================");
+            case 4:
                 System.exit(0);
             default:
                 System.out.println("Invalid Input!!!");

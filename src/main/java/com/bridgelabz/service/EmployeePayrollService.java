@@ -15,4 +15,5 @@ import java.sql.SQLException;
 public interface EmployeePayrollService {
     int createTable() throws SQLException;
     int insertValues(EmployeePayroll employeePayroll) throws SQLException;
+    void showRecords() throws SQLException;
 }

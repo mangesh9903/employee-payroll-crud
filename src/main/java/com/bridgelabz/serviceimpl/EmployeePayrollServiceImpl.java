@@ -5,6 +5,7 @@ import com.bridgelabz.repository.DbConnection;
 import com.bridgelabz.service.EmployeePayrollService;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -41,9 +42,27 @@ public class EmployeePayrollServiceImpl implements EmployeePayrollService {
      */
     @Override
     public int insertValues(EmployeePayroll employeePayroll) throws SQLException {
-        String sqlQuery = "insert into EmployeePayroll values(" + employeePayroll.getId() + ",'" + employeePayroll.getName() + "','"
+        String sqlQuery = "insert into EmployeePayroll values(" + employeePayroll.getId() + ",'"
+                + employeePayroll.getName() + "','"
                 + employeePayroll.getSalary() + "')";
         statement = connection.createStatement();
         return statement.executeUpdate(sqlQuery);
+    }
+
+    /** Method :- Shows All Records Present In Table.
+     *
+     * @throws SQLException
+     */
+    @Override
+    public void showRecords() throws SQLException {
+        String sqlQuery = "select * from EmployeePayroll";
+        statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery(sqlQuery);
+
+        while (resultSet.next()) {
+            System.out.println(" ID :- " + resultSet.getInt("id") + " Name : "
+                    + resultSet.getString("name") + " Salary : " + resultSet.getString("salary"));
+        }
+
     }
 }
