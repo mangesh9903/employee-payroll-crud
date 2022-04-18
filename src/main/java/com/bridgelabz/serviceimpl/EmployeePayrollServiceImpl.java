@@ -82,4 +82,17 @@ public class EmployeePayrollServiceImpl implements EmployeePayrollService {
         statement = connection.createStatement();
         return statement.executeUpdate(sqlQuery);
     }
+
+    /** Method :- Method for Delete Records From Database.
+     *
+     * @param id passing ID As a Input to Delete Records.
+     * @return Returning Deleted Record.
+     * @throws SQLException
+     */
+    @Override
+    public int deleteValues(int id) throws SQLException {
+        String sqlQuery = "DELETE from EmployeePayroll where id='"+id+"'";
+        statement = connection.createStatement();
+        return statement.executeUpdate(sqlQuery);
+    }
 }

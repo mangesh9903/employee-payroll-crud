@@ -22,58 +22,75 @@ public class HomeController {
         EmployeePayrollService payrollService = new EmployeePayrollServiceImpl();
 
         Scanner scanner = new Scanner(System.in);
-        System.out.println("1. Create Table.");
-        System.out.println("2. Insert Data in Employee Payroll.");
-        System.out.println("3. Show All Records Of Employee Payroll.");
-        System.out.println("4. Update Records Of Employee Payroll.");
-        System.out.println("5. Exit From Employee Payroll.");
+        while (true) {
+            System.out.println("1. Create Table.");
+            System.out.println("2. Insert Data in Employee Payroll.");
+            System.out.println("3. Show All Records Of Employee Payroll.");
+            System.out.println("4. Update Records Of Employee Payroll.");
+            System.out.println("5. Delete Records From Employee Payroll.");
+            System.out.println("6. Exit From Employee Payroll.");
 
-        int ch = scanner.nextInt();
+            int ch = scanner.nextInt();
 
-        switch (ch) {
-            case 1:
-                System.out.println("Table Created Successfully.");
-                payrollService.createTable();
-                break;
-            case 2:
-                System.out.println("Insert New Data.");
-                System.out.println("Enter ID: ");
-                employeePayroll.setId(scanner.nextInt());
-                System.out.println("Enter Name: ");
-                employeePayroll.setName(scanner.next());
-                System.out.println("Enter Salary: ");
-                employeePayroll.setSalary(scanner.nextDouble());
-                payrollService.insertValues(employeePayroll);
-                System.out.println("Data Inserted Successfully.");
-                break;
-            case 3:
-                System.out.println("--------------------  Employee Payroll Database Records ----------------------");
-                payrollService.showRecords();
-                System.out.println("===============================================================================");
-                break;
-            case 4:
-                System.out.println("-----------  Employee Payroll Database Before Update Records ----------------");
-                payrollService.showRecords();
-                System.out.println("==============================================================================");
-                System.out.println("--------updating new values---------");
+            switch (ch) {
+                case 1:
+                    System.out.println("Table Created Successfully.");
+                    payrollService.createTable();
+                    break;
+                case 2:
+                    System.out.println("Insert New Data.");
+                    System.out.println("Enter ID: ");
+                    employeePayroll.setId(scanner.nextInt());
+                    System.out.println("Enter Name: ");
+                    employeePayroll.setName(scanner.next());
+                    System.out.println("Enter Salary: ");
+                    employeePayroll.setSalary(scanner.nextDouble());
+                    payrollService.insertValues(employeePayroll);
+                    System.out.println("----------------------------------------------------------------------------");
+                    System.out.println("Data Inserted Successfully.");
+                    System.out.println("----------------------------------------------------------------------------");
+                    break;
+                case 3:
+                    System.out.println("--------------------  Employee Payroll Database Records ----------------------");
+                    payrollService.showRecords();
+                    System.out.println("===============================================================================");
+                    break;
+                case 4:
+                    System.out.println("-----------  Employee Payroll Database Before Update Records ----------------");
+                    payrollService.showRecords();
+                    System.out.println("==============================================================================");
+                    System.out.println("--------  updating new values  ---------");
 
-                System.out.println("Enter id you want to update: ");
-                int id = scanner.nextInt();
-                System.out.println("Enter name to change: ");
-                employeePayroll.setName(scanner.next());
-                System.out.println("Enter salary to change: ");
-                employeePayroll.setSalary(scanner.nextDouble());
-                System.out.println("-------------  Employee Payroll Database After Update Records ----------------");
-                payrollService.updateValues(id, employeePayroll);
-                payrollService.showRecords();
-                System.out.println("===============================================================================");
+                    System.out.println("Enter id you want to update: ");
+                    int id = scanner.nextInt();
+                    System.out.println("Enter name to change: ");
+                    employeePayroll.setName(scanner.next());
+                    System.out.println("Enter salary to change: ");
+                    employeePayroll.setSalary(scanner.nextDouble());
+                    System.out.println("-------------  Employee Payroll Database After Update Records ----------------");
+                    payrollService.updateValues(id, employeePayroll);
+                    payrollService.showRecords();
+                    System.out.println("===============================================================================");
+                    break;
+                case 5:
+                    System.out.println("-----------  Employee Payroll Database Before Delete Records ----------------");
+                    payrollService.showRecords();
+                    System.out.println("==============================================================================");
+                    System.out.println("--------  deleting new values  ---------");
+                    System.out.println("Enter id you want to delete: ");
+                    int idForDelete = scanner.nextInt();
+                    System.out.println("-------------  Employee Payroll Database After Delete Records ----------------");
+                    payrollService.deleteValues(idForDelete);
+                    payrollService.showRecords();
+                    System.out.println("===============================================================================");
 
-                break;
-            case 5:
-                System.exit(0);
-            default:
-                System.out.println("Invalid Input!!!");
-                break;
+                    break;
+                case 6:
+                    System.exit(0);
+                default:
+                    System.out.println("Invalid Input!!!");
+                    break;
+            }
         }
     }
 }

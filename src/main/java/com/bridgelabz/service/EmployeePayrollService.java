@@ -17,4 +17,5 @@ public interface EmployeePayrollService {
     int insertValues(EmployeePayroll employeePayroll) throws SQLException;
     void showRecords() throws SQLException;
     int updateValues(int id, EmployeePayroll employeePayroll) throws SQLException;
+    int deleteValues(int id) throws SQLException;
 }
